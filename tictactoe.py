@@ -44,17 +44,41 @@ def floor(value):
 
 state = {'player': 0}
 players = [drawx, drawo]
+positions = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0, 9:0}
 
 
 def tap(x, y):
     """Draw X or O in tapped square."""
     x = floor(x)
     y = floor(y)
-    player = state['player']
-    draw = players[player]
-    draw(x, y)
-    update()
-    state['player'] = not player
+    square = [x, y]
+    pos = 0
+    if square == [-200, 66]:
+        pos = 1
+    elif square == [-67, 66]:
+        pos = 2
+    elif square == [66, 66]:
+        pos = 3
+    elif square == [-200, -67]:
+        pos = 4
+    elif square == [-67, -67]:
+        pos = 5
+    elif square == [66, -67]:
+        pos = 6
+    elif square == [-200, -200]:
+        pos = 7
+    elif square == [-67, -200]:
+        pos = 8
+    elif square == [66, -200]:
+        pos = 9
+    if(positions[pos] == 0):
+        player = state['player']
+        draw = players[player]
+        draw(x, y)
+        update()
+        state['player'] = not player
+        positions[pos] = 1
+
 
 
 setup(420, 420, 370, 0)
