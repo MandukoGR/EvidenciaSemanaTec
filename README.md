@@ -5,7 +5,7 @@
 **Evidencia Semana Tec: "Herramientas: Computacionales el arte de la programación." Modificación de juegos de freegames con python.**
 
 ------------
-#Tic Tac Toe
+# Tic Tac Toe
 1. Cambio de colores de "X" y "O": Para esto se utilizó la función color() de la librería turtle.
 
 2. Cambio de tamaño de "X" y "O" : Se editaron los valores de tamaño originales.
