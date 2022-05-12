@@ -44,15 +44,16 @@ def floor(value):
 
 state = {'player': 0}
 players = [drawx, drawo]
-positions = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0, 9:0}
+positions = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0, 9:0} #Number for each position and value (1 taken 0 empty)
 
 
 def tap(x, y):
     """Draw X or O in tapped square."""
     x = floor(x)
     y = floor(y)
-    square = [x, y]
+    square = [x, y] #Coordinates of square
     pos = 0
+    """Conditions for getting square position"""
     if square == [-200, 66]:
         pos = 1
     elif square == [-67, 66]:
@@ -71,6 +72,7 @@ def tap(x, y):
         pos = 8
     elif square == [66, -200]:
         pos = 9
+    """Validation for checking if the spot is taken"""
     if(positions[pos] == 0):
         player = state['player']
         draw = players[player]
