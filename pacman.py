@@ -17,9 +17,9 @@ ghosts = [
 # Defines in which tiles of the board can the ghosts and pacman move. (The ones that have the value 1)
 tiles = [
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0,
+    0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 0, 0, 0, 0,
     0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0,
-    0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0,
+    0, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0,
     0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0,
     0, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0,
     0, 1, 0, 0, 1, 1, 1, 1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0,
@@ -27,13 +27,13 @@ tiles = [
     0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0,
     0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0,
     0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0,
-    0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0,
-    0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0,
+    0, 1, 1, 1, 1, 1, 2, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0,
+    0, 2, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0,
     0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0,
     0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 0, 0, 0,
-    0, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0,
+    0, 1, 1, 2, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 2, 1, 0, 0, 0, 0,
     0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0,
-    0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0,
+    0, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 ]
 # Draw square using path at (x, y).
@@ -86,7 +86,11 @@ def world():
                 path.up()
                 path.goto(x + 10, y + 10)
                 # The next line of code will define the color of the "fruits" that pacman needs to eat
-                path.dot(4, 'yellow')
+                path.dot(4, 'yellow') 
+            if tile == 2:
+                path.up()
+                path.goto(x + 10, y + 10)
+                path.dot(10, 'red')
 # Move pacman and all ghosts.
 def move():
     writer.undo()
@@ -100,8 +104,14 @@ def move():
     index = offset(pacman)
 
     if tiles[index] == 1:
-        tiles[index] = 2
-        state['score'] += 1
+        tiles[index] = 3
+        state['score'] += 10
+        x = (index % 20) * 20 - 200
+        y = 180 - (index // 20) * 20
+        square(x, y)
+    elif tiles[index] == 2:
+        tiles[index] = 3
+        state['score'] += 100
         x = (index % 20) * 20 - 200
         y = 180 - (index // 20) * 20
         square(x, y)
@@ -136,7 +146,7 @@ def move():
             dot(20, 'pink')
             counterGhost = counterGhost + 1
         elif counterGhost == 3:
-            dot(20, 'green')
+            dot(20, 'orange')
             counterGhost = counterGhost + 1
         elif counterGhost == 4:
             dot(20, 'cyan')
@@ -149,7 +159,6 @@ def move():
     ontimer(move, 100)
 # Change pacman aim if valid.
 def change(x, y):
-    
     if valid(pacman + vector(x, y)):
         aim.x = x
         aim.y = y
