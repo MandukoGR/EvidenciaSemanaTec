@@ -11,6 +11,8 @@ hide = [True] * 64
 global taps
 taps = 0
 
+global points
+points = 64
 
 def square(x, y):
     """Draw white square with black outline at (x, y)."""
@@ -50,7 +52,7 @@ def tap(x, y):
         hide[spot] = False
         hide[mark] = False
         state['mark'] = None
-
+        points += 2
 
 
 def draw():
@@ -77,7 +79,12 @@ def draw():
     goto(50, 200)
     color('black')
     write('Taps: ' + str(taps), font=('Arial', 30, 'normal'))
-
+ 
+    if(points == 64):
+        goto(-150, 200)
+        color(randint(0,100)/100.0, randint(0,100)/100.0, randint(0,100)/100.0)
+        write("Success!", font=('Arial', 30, 'normal'))
+        
     update()
     ontimer(draw, 100)
 
