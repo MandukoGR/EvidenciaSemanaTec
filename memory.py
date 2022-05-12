@@ -1,7 +1,8 @@
-
-from random import *
-from turtle import *
-
+from random import randint, shuffle
+from turtle import up, goto, down, color, begin_fill, forward
+from turtle import left, end_fill, clear, shape, stamp, write
+from turtle import update, ontimer, setup, addshape, hideturtle
+from turtle import tracer, onscreenclick, done
 from freegames import path
 
 car = path('car.gif')
@@ -12,7 +13,8 @@ global taps
 taps = 0
 
 global points
-points = 64
+points = 0
+
 
 def square(x, y):
     """Draw white square with black outline at (x, y)."""
@@ -39,13 +41,13 @@ def xy(count):
 
 def tap(x, y):
     """Update mark and hidden tiles based on tap."""
-    global taps, points    
-    
+    global taps, points
+
     spot = index(x, y)
     mark = state['mark']
 
     taps += 1
- 
+
     if mark is None or mark == spot or tiles[mark] != tiles[spot]:
         state['mark'] = spot
     else:
@@ -79,12 +81,14 @@ def draw():
     goto(50, 200)
     color('black')
     write('Taps: ' + str(taps), font=('Arial', 30, 'normal'))
- 
+
     if(points == 64):
-        goto(-150, 200)
-        color(randint(0,100)/100.0, randint(0,100)/100.0, randint(0,100)/100.0)
+        goto(-200, 200)
+        color(randint(0, 100)/100.0,
+              randint(0, 100)/100.0,
+              randint(0, 100)/100.0)
         write("Success!", font=('Arial', 30, 'normal'))
-        
+
     update()
     ontimer(draw, 100)
 
