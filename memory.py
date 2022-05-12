@@ -90,7 +90,7 @@ def draw():
         write(tiles[mark], font=('Arial', 30, 'normal'))
 
 	# Draw the number of taps
-    goto(50, 200)
+    goto(25, 200)
     color('black')
     write('Taps: ' + str(taps), font=('Arial', 30, 'normal'))
 
