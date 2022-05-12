@@ -8,8 +8,8 @@ Exercises
 4. How could you create a computer player?
 """
 
-from turtle import *
-
+from turtle import color, up, goto, down, circle, update
+from turtle import setup, hideturtle, tracer, onscreenclick, done
 from freegames import line
 
 
@@ -44,14 +44,15 @@ def floor(value):
 
 state = {'player': 0}
 players = [drawx, drawo]
-positions = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0, 9:0} #Number for each position and value (1 taken 0 empty)
+"""Number for each position and value (1 taken 0 empty)"""
+positions = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0, 9: 0}
 
 
 def tap(x, y):
     """Draw X or O in tapped square."""
     x = floor(x)
     y = floor(y)
-    square = [x, y] #Coordinates of square
+    square = [x, y]  # Coordinates of square
     pos = 0
     """Conditions for getting square position"""
     if square == [-200, 66]:
@@ -80,7 +81,6 @@ def tap(x, y):
         update()
         state['player'] = not player
         positions[pos] = 1
-
 
 
 setup(420, 420, 370, 0)
