@@ -110,6 +110,7 @@ def move():
     goto(pacman.x + 10, pacman.y + 10)
     # The next line of code will define the color of pacman and its size
     dot(20, 'yellow')
+    counterGhost = 1;
     for point, course in ghosts:
         if valid(point + course):
             point.move(course)
@@ -128,7 +129,17 @@ def move():
         up()
         goto(point.x + 10, point.y + 10)
         # The next line of code will define the color of the ghosts
-        dot(20, 'red')
+        if counterGhost == 1:
+            dot(20, 'red')
+            counterGhost = counterGhost + 1
+        elif counterGhost == 2:
+            dot(20, 'pink')
+            counterGhost = counterGhost + 1
+        elif counterGhost == 3:
+            dot(20, 'green')
+            counterGhost = counterGhost + 1
+        elif counterGhost == 4:
+            dot(20, 'cyan')
     update()
 
     for point, course in ghosts:
