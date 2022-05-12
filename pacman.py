@@ -9,10 +9,10 @@ aim = vector(5, 0)
 pacman = vector(-40, -80)
 # The second vector of the array defines their initial speed, in other words, how fast they move on their first movement
 ghosts = [
-    [vector(-180, 160), vector(5, 0)],
-    [vector(-180, -160), vector(0, 5)],
-    [vector(100, 160), vector(0, -5)],
-    [vector(100, -160), vector(-5, 0)],
+    [vector(-180, 160), vector(15, 0)],
+    [vector(-180, -160), vector(0, 15)],
+    [vector(100, 160), vector(0, -15)],
+    [vector(100, -160), vector(-15, 0)],
 ]
 # Defines in which tiles of the board can the ghosts and pacman move. (The ones that have the value 1)
 tiles = [
@@ -116,10 +116,10 @@ def move():
         else:
             # The array "options" defines how many tiles the ghosts are moving after their first movement every 100 ms, namely, their speed
             options = [
-                vector(5, 0),
-                vector(-5, 0),
-                vector(0, 5),
-                vector(0, -5),
+                vector(15, 0),
+                vector(-15, 0),
+                vector(0, 15),
+                vector(0, -15),
             ]
             plan = choice(options)
             course.x = plan.x
