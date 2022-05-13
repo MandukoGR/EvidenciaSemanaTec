@@ -46,13 +46,13 @@ def tap(x, y):
     """Update mark and hidden tiles based on tap."""
     global taps, points
 
-	# Get the index of the selected tile
+    # Get the index of the selected tile
     spot = index(x, y)
-    
+
     # Obtain the last tile
     mark = state['mark']
 
-	# Increment the number of taps
+    # Increment the number of taps
     taps += 1
 
     if mark is None or mark == spot or tiles[mark] != tiles[spot]:
@@ -61,7 +61,7 @@ def tap(x, y):
         hide[spot] = False
         hide[mark] = False
         state['mark'] = None
-        
+
         # Indicate that two tiles have been uncovered
         points += 2
 
@@ -73,7 +73,7 @@ def draw():
     shape(car)
     stamp()
 
-	# Draw a square for each hidden tile
+    # Draw a square for each hidden tile
     for count in range(64):
         if hide[count]:
             x, y = xy(count)
@@ -81,7 +81,7 @@ def draw():
 
     mark = state['mark']
 
-	# Draw the number of the tile on the last selected tile
+    # Draw the number of the tile on the last selected tile
     if mark is not None and hide[mark]:
         x, y = xy(mark)
         up()
@@ -89,20 +89,20 @@ def draw():
         color('black')
         write(tiles[mark], font=('Arial', 30, 'normal'))
 
-	# Draw the number of taps
+    # Draw the number of taps
     goto(25, 200)
     color('black')
     write('Taps: ' + str(taps), font=('Arial', 30, 'normal'))
 
-	#If all tiles have been uncovered, announce success
+    # If all tiles have been uncovered, announce success
     if(points == 64):
         goto(-200, 200)
-        
-        #Use a random color
+
+        # Use a random color
         color(randint(0, 100)/100.0,
               randint(0, 100)/100.0,
               randint(0, 100)/100.0)
-        
+
         write("Success!", font=('Arial', 30, 'normal'))
 
     update()
